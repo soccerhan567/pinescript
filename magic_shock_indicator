@@ -1,0 +1,72 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// river2liu
+
+//@version=5
+indicator("Magic Shock Indicator",overlay=true)
+
+plot(ta.ema(close, 13), color = color.yellow)
+// plot(ta.ema(close, 100), color = color.green)
+plot(ta.ema(close, 144), color = color.purple)
+plot(ta.ema(close, 169), color = color.blue)
+plot(ta.ema(close, 200), color = color.aqua)
+
+var index_up = 0
+var index_down = 0
+
+if close-close[4]>0
+    index_up := index_up+1
+else
+    index_up := 0
+    
+if close-close[4]<0
+    index_down := index_down+1
+else
+    index_down := 0
+
+// plotshape(index_up==0,style=shape.triangledown,color=color.green,location=location.abovebar,size=size.tiny,text="0",textcolor=color.green)
+// plotshape(index_up==1,style=shape.triangledown,color=color.green,location=location.abovebar,size=size.tiny,text="1",textcolor=color.green)
+// plotshape(index_up==2,style=shape.triangledown,color=color.green,location=location.abovebar,size=size.tiny,text="2",textcolor=color.green)
+// plotshape(index_up==3,style=shape.triangledown,color=color.green,location=location.abovebar,size=size.tiny,text="3",textcolor=color.green)
+// plotshape(index_up==4,style=shape.triangledown,color=color.green,location=location.abovebar,size=size.tiny,text="4",textcolor=color.green)
+
+// plotshape(index_down==0,style=shape.triangleup,color=color.yellow,location=location.belowbar,size=size.tiny,text="0",textcolor=color.yellow)
+// plotshape(index_down==1,style=shape.triangleup,color=color.yellow,location=location.belowbar,size=size.tiny,text="1",textcolor=color.yellow)
+// plotshape(index_down==2,style=shape.triangleup,color=color.yellow,location=location.belowbar,size=size.tiny,text="2",textcolor=color.yellow)
+// plotshape(index_down==3,style=shape.triangleup,color=color.yellow,location=location.belowbar,size=size.tiny,text="3",textcolor=color.yellow)
+// plotshape(index_down==4,style=shape.triangleup,color=color.yellow,location=location.belowbar,size=size.tiny,text="4",textcolor=color.yellow)
+
+plotshape(index_up[1]==4, "📉", text = "⬇️", location = location.abovebar, size = size.auto, color = color.yellow, style = shape.xcross)
+plotshape(index_down[1]==4, "📈",text = "⬆️", location = location.belowbar, size = size.auto, color = color.blue, style = shape.xcross)
+
+var index_up_9 = 0
+var index_down_9 = 0
+
+if close - close[9]>0
+    index_up_9 := index_up_9 +1
+else 
+    index_up_9 := 0
+
+if close - close[9]<0
+    index_down_9 := index_down_9 +1
+else 
+    index_down_9 := 0
+
+plotshape(index_up[1]==9, "9️⃣📉", text = "9️⃣", location = location.abovebar, size = size.auto, color = color.yellow, style = shape.cross)
+plotshape(index_down[1]==9, "9️⃣📈",text = "9️⃣", location = location.belowbar, size = size.auto, color = color.blue, style = shape.cross)
+
+
+var index_up_13 = 0
+var index_down_13 = 0
+
+if close - close[13]>0
+    index_up_13 := index_up_13 +1
+else 
+    index_up_13 := 0
+
+if close - close[13]<0
+    index_down_13 := index_down_13 +1
+else 
+    index_down_13 := 0
+
+plotshape(index_up[1]==13, "❎", text = "❎", location = location.abovebar, size = size.auto, color = color.yellow, style = shape.cross)
+plotshape(index_down[1]==13, "✅",text = "✅", location = location.belowbar, size = size.auto, color = color.blue, style = shape.cross)
